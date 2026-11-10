@@ -1,0 +1,50 @@
+
+{% extends 'shop/base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+<h2>My Profile</h2>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Username</label>
+        <input type="text"
+               class="form-control"
+               value="{{ request.user.username }}"
+               readonly>
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="email"
+               class="form-control"
+               value="{{ request.user.email }}"
+               readonly>
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <input type="text"
+               name="phone"
+               class="form-control"
+               value="{{ profile.phone }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Address</label>
+        <textarea name="address"
+                  class="form-control">{{ profile.address }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Update Profile
+    </button>
+
+</form>
+
+{% endblock %}
